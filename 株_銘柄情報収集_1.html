@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📈 株｜銘柄情報収集シート</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 13px; color: #1a1a1a; background: #f9f9f7; margin: 0; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: #888; margin-bottom: 20px; }
+  h2 { font-size: 14px; font-weight: 600; margin: 32px 0 10px; color: #444; border-left: 3px solid #888; padding-left: 8px; }
+  .table-wrap { overflow-x: auto; overflow-y: auto; max-height: 440px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  table { border-collapse: collapse; width: 100%; min-width: 900px; background: #fff; }
+  thead th { background: #f1efea; font-size: 11px; font-weight: 600; color: #555; text-align: center; padding: 8px 10px; border-bottom: 1px solid #e0ded8; white-space: nowrap; position: sticky; top: 0; z-index: 10; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid #f0eee8; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #faf9f6; }
+  td.code { font-family: monospace; font-size: 12px; color: #888; white-space: nowrap; }
+  td.name { font-weight: 600; white-space: nowrap; }
+  td.center { text-align: center; }
+  .dir-up { color: #1a9e75; font-size: 15px; }
+  .dir-down { color: #d94040; font-size: 15px; }
+  .dir-flat { color: #999; font-size: 15px; }
+  .sign { font-family: monospace; font-size: 11px; background: #f1efea; padding: 2px 6px; border-radius: 4px; color: #555; white-space: nowrap; }
+  .link-btn { display: inline-block; font-size: 12px; color: #4a7fc1; text-decoration: none; padding: 2px 7px; border: 1px solid #b5d0f0; border-radius: 4px; white-space: nowrap; transition: background 0.15s; }
+  .link-btn:hover { background: #e8f0fb; }
+  .badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 99px; white-space: nowrap; }
+  .badge-liquid { background: #e1f5ee; color: #085041; }
+  .badge-smr { background: #e6f1fb; color: #0c447c; }
+  .badge-crystal { background: #eeedfe; color: #3c3489; }
+  .memo-section { margin-top: 32px; }
+  details { background: #fff; border: 1px solid #e0ded8; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+  summary { font-size: 13px; font-weight: 600; padding: 12px 16px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▶"; font-size: 10px; color: #aaa; transition: transform 0.2s; display: inline-block; }
+  details[open] summary::before { transform: rotate(90deg); }
+  summary:hover { background: #faf9f6; }
+  .memo-body { padding: 12px 16px 16px; font-size: 12px; line-height: 1.8; color: #444; border-top: 1px solid #f0eee8; white-space: pre-wrap; }
+  .memo-date { font-size: 11px; color: #999; margin-bottom: 6px; }
+  .legend { margin-top: 32px; }
+  .legend table { min-width: unset; width: auto; }
+  .legend th { text-align: left; }
+  .update-table { min-width: unset; width: 100%; }
+  footer { margin-top: 32px; font-size: 11px; color: #bbb; }
+</style>
+</head>
+<body>
+
+<h1>📈 株｜銘柄情報収集シート</h1>
+<div class="meta">プロジェクト：株　｜　作成日：2026-06-06　｜　用途：銘柄ごとの収集情報を一元管理するリファレンス</div>
+
+<h2>銘柄情報テーブル</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>コード</th><th>銘柄名</th><th>セクター</th><th>業界</th><th>モメンタムグループ</th><th>競合</th><th>株価</th><th>方向</th><th>直近高値</th><th>直近安値</th><th>サイン</th><th>情報</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="code">6504</td><td class="name">富士電機</td><td>電気機器</td><td>重電・電源インフラ</td><td><span class="badge badge-liquid">DCデータセンター液冷（強）</span></td><td>三菱電機・ABB</td><td>—</td><td class="center"><span class="dir-up">↑</span></td><td>17,760円（26/05/26）</td><td>—</td><td><span class="sign">AH</span></td><td class="center"><a class="link-btn" href="#info-6504" onclick="openDetail('info-6504')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6498</td><td class="name">キッツ</td><td>機械</td><td>バルブ・流体制御</td><td><span class="badge badge-liquid">DCデータセンター液冷（強）</span></td><td>オーケーエム・ヨシタケ</td><td>—</td><td class="center"><span class="dir-up">↑</span></td><td>2,410円（26/05/29）</td><td>1,682円（26/03/30）</td><td><span class="sign">YH・10年来高値</span></td><td class="center"><a class="link-btn" href="#info-6498" onclick="openDetail('info-6498')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6584</td><td class="name">三桜工業</td><td>輸送用機器</td><td>自動車部品・DC液冷</td><td><span class="badge badge-liquid">DC液冷（強）／自動車部品</span></td><td>—</td><td>約1,110円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>919円→6/5上抜け新高値圏</td><td>645円（26/03/30）</td><td><span class="sign">YH更新</span></td><td class="center"><a class="link-btn" href="#info-6584" onclick="openDetail('info-6584')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6501</td><td class="name">日立製作所</td><td>電気機器</td><td>総合電機・原子力</td><td><span class="badge badge-smr">SMR・原発（強）</span></td><td>三菱重工・東芝</td><td>約5,369円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>6,039円（26/02/10・YH）</td><td>4,388円（26/03/30・YL）</td><td>—</td><td class="center"><a class="link-btn" href="#info-6501" onclick="openDetail('info-6501')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6841</td><td class="name">横河電機</td><td>電気機器</td><td>計測・制御システム</td><td><span class="badge badge-smr">SMR・原発（強）</span></td><td>エマソン・ハネウェル</td><td>約5,044円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>—</td><td>—</td><td>—</td><td class="center"><a class="link-btn" href="#info-6841" onclick="openDetail('info-6841')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6492</td><td class="name">岡野バルブ製造</td><td>機械</td><td>発電用バルブ</td><td><span class="badge badge-smr">SMR・原発（最強）</span></td><td>—</td><td>約14,720円（6/6）</td><td class="center"><span class="dir-down">↓</span></td><td>19,480円（26/04/24・AH）</td><td>4,980円（52週安値）</td><td>—</td><td class="center"><a class="link-btn" href="#info-6492" onclick="openDetail('info-6492')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6378</td><td class="name">木村化工機</td><td>機械</td><td>化工機・蒸気発生器</td><td><span class="badge badge-smr">SMR・原発（強）</span></td><td>—</td><td>約1,110円（6/4）</td><td class="center"><span class="dir-down">↓</span></td><td>1,950円（26/03/26・10年来高値）</td><td>1,110円（26/06/04・YL）</td><td><span class="sign">YL</span></td><td class="center"><a class="link-btn" href="#info-6378" onclick="openDetail('info-6378')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6779</td><td class="name">日本電波工業</td><td>電気機器</td><td>水晶デバイス</td><td><span class="badge badge-crystal">水晶デバイス・AIサーバー（最強）</span></td><td>大真空・リバーエレテック</td><td>約4,660円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>4,890円（26/06/05・YH）</td><td>—</td><td><span class="sign">YH</span></td><td class="center"><a class="link-btn" href="#info-6779" onclick="openDetail('info-6779')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6962</td><td class="name">大真空</td><td>電気機器</td><td>水晶デバイス</td><td><span class="badge badge-crystal">水晶デバイス・AIサーバー（最強）</span></td><td>日本電波工業・リバーエレテック</td><td>約1,127円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>1,132円（26/06/05・YH）</td><td>571円（26/01/27・YL）</td><td><span class="sign">YH</span></td><td class="center"><a class="link-btn" href="#info-6962" onclick="openDetail('info-6962')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">7011</td><td class="name">三菱重工業</td><td>機械・重工</td><td>総合重機・防衛</td><td><span class="badge badge-smr">防衛（強）／DC液冷（弱）</span></td><td>IHI・川崎重工</td><td>—</td><td class="center"><span class="dir-flat">→</span></td><td>—</td><td>—</td><td>—</td><td class="center"><a class="link-btn" href="#info-7011" onclick="openDetail('info-7011')">→ メモ</a></td>
+</tr>
+<tr>
+  <td class="code">6752</td><td class="name">パナソニックHD</td><td>電気機器</td><td>総合電機・電池</td><td><span class="badge badge-crystal">電池・蓄電（中）／DC液冷（弱）</span></td><td>ソニーG・日立</td><td>約3,754円（6/5）</td><td class="center"><span class="dir-up">↑</span></td><td>3,994円（26/06/03・10年来高値）</td><td>2,003円（26/01/08）</td><td><span class="sign">YH・10年来高値</span></td><td class="center"><a class="link-btn" href="#info-6752" onclick="openDetail('info-6752')">→ メモ</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="memo-section">
+<h2>情報メモ（クリックで開閉）</h2>
+
+<details id="info-6504">
+<summary><span class="badge badge-liquid" style="margin-right:6px">DC液冷</span>6504 富士電機</summary>
+<div class="memo-body">【2026-06-07】DC液冷テーマ調査。5/26日経「冷却電力85%削減の水冷式機器開発」報道で急騰。上場来高値16,685円（5/22）更新後さらに上値。日系大手証券が目標株価19,000円へ引き上げ。DCインフラ「設計〜施工〜保守」の丸ごとビジネスが強み。UPS・電源・水冷機器を一括提供できる数少ない国内大手。5銘柄中チャート最強。</div>
+</details>
+
+<details id="info-6498">
+<summary><span class="badge badge-liquid" style="margin-right:6px">DC液冷</span>6498 キッツ</summary>
+<div class="memo-body">【2026-06-07】DC液冷テーマ調査。国内最大手バルブメーカー（国内No.1シェア）。液冷システムの配管流量制御バルブへの引き合い急増。半導体製造装置向けバルブも好調（ブイテックスを3月に子会社化）。Q1決算：売上高+11.7%・営業利益+9.4%の増収増益。5期連続最高業績更新。業績裏付けのある上昇で中期チャートは綺麗な右肩上がり。5銘柄中チャート2位。</div>
+</details>
+
+<details id="info-7011">
+<summary><span class="badge badge-liquid" style="margin-right:6px">DC液冷</span>7011 三菱重工業</summary>
+<div class="memo-body">【2026-06-07】DC液冷テーマ調査。NTTデータ・KDDIと共同でラック型液浸冷却システムを構築、冷却エネルギー92%削減の実証実績あり。ただし株価の主要材料は防衛・航空宇宙セグメントであり、DC液冷テーマとしての株価への反映は限定的。2026/3期：売上収益+14.1%・事業利益+21.8%と大幅増益。液冷目的での保有はテーマ純度が低く優先度低め。防衛テーマとして別途評価推奨。</div>
+</details>
+
+<details id="info-6584">
+<summary><span class="badge badge-liquid" style="margin-right:6px">DC液冷</span>6584 三桜工業</summary>
+<div class="memo-body">【2026-06-07】保有銘柄・DC液冷テーマ調査。自動車配管部品メーカーがDC水冷ユニット事業に本格参入。年内に専用ライン設置予定で実需あり。直近1週間+28%・1ヶ月+49%・1年+81%の急騰。年初来高値919円を大きく上抜け新高値圏入り。TradingView現在値1,110円（6/5時点）。PBR0.64倍と割安感残る。テーマ株としてのボラティリティは高く、急落リスクにも注意。押し目は拾われやすい構図。</div>
+</details>
+
+<details id="info-6752">
+<summary><span class="badge badge-liquid" style="margin-right:6px">DC液冷</span>6752 パナソニックHD</summary>
+<div class="memo-body">【2026-06-07】保有銘柄・DC液冷テーマ調査。液冷との直接接点は薄いが、DC向け蓄電システム販売が大幅伸長。6/3にSMBC日興が目標株価5,000円へ引き上げ→同日+8.93%（3,916円）急伸。翌6/4に米系証券が「成長期待は織り込まれた」として格下げ→-2.96%（3,800円）反落。強弱評価が割れており方向感は不安定。2026/3期は減収減益（売上-5%・営業利益-45%）だが次期は構造改革効果で増益見込み・増配予定。液冷テーマとしての純度は低いが、電池・蓄電テーマとして別途評価の余地あり。</div>
+</details>
+
+<details id="info-6501">
+<summary><span class="badge badge-smr" style="margin-right:6px">SMR・原発</span>6501 日立製作所</summary>
+<div class="memo-body">【2026-06-07】SMR・原発テーマ調査。日立GEニュークリア・エナジーがカナダ・オンタリオ電力のSMR建設プロジェクト初号機向け原子炉主要機器を受注（2〜4号機も受注目指す）。日本時価総額5位（22.1兆円）の大型安定株。業績は増収増益トレンド継続（Q3：売上+7%・営業利益+26%・純利益+48%）。底値目安：①5,000円（心理的節目・75日線付近）②4,388円（年初来安値）③4,400円（200日線）。現在は各移動平均線の上位にあり下値は堅い。</div>
+</details>
+
+<details id="info-6841">
+<summary><span class="badge badge-smr" style="margin-right:6px">SMR・原発</span>6841 横河電機</summary>
+<div class="memo-body">【2026-06-07】SMR・原発テーマ調査。2026年2月に英ロールス・ロイスSMR社と戦略的協業契約を締結。SMRの「中枢神経」にあたるデータ処理・制御システム（DPCS）を供給する。プラント制御で世界的シェアを持つ安定成長株。2026/3期：売上高+7.5%で過去最高更新・純利益+11.5%増益。チャートは高値から小幅調整中だが中期上昇トレンド維持。SMR量産フェーズに入れば制御システム需要が継続的に発生する構図。</div>
+</details>
+
+<details id="info-6492">
+<summary><span class="badge badge-smr" style="margin-right:6px">SMR・原発</span>6492 岡野バルブ製造</summary>
+<div class="memo-body">【2026-06-07】SMR・原発テーマ調査。世界60カ国の発電所に100万台以上のバルブを納入、SMR含む原子力発電所向けバルブで世界トップシェア。業績は大幅増収増益：中間期 売上+38%・営業利益+135%。通期 売上+43%・営業利益+126%計画。上場来高値19,480円（4/24）から6/6時点14,720円と約25%調整済み。テーマ純度・業績ともに最強だが、高値からの調整継続に注意。先週42%急騰と値動きは激しい。</div>
+</details>
+
+<details id="info-6378">
+<summary><span class="badge badge-smr" style="margin-right:6px">SMR・原発</span>6378 木村化工機</summary>
+<div class="memo-body">【2026-06-07】SMR・原発テーマ調査。SMRの心臓部「蒸気発生器」で数十年のノウハウを持つ中堅メーカー。時価総額252億円の小型株で案件獲得が業績インパクトに直結。テーマ純度は高いが、チャートは高値1,950円から年初来安値1,110円まで43%下落と明確に弱い。業績も直近Q3は営業利益-18%・受注高-21%と悪化傾向。SMR実需立ち上がりまでの時間軸リスクに注意。現時点では押し目買いよりも反発確認後のエントリーを推奨。</div>
+</details>
+
+<details id="info-6779">
+<summary><span class="badge badge-crystal" style="margin-right:6px">水晶デバイス</span>6779 日本電波工業</summary>
+<div class="memo-body">【2026-06-07】水晶デバイステーマ調査。水晶デバイス総合大手・国内首位級。人工水晶からの一貫生産が強み。2026年4月にAIサーバー向け625MHz対応差動出力水晶発振器を開発発表。JAXAから国内唯一の認定メーカー。次期DC向け売上は44億→84億円（+91%）計画。年初来安値比+170%超の急騰。6/3に+20%、6/5に年初来高値4,890円更新。ただし日中値幅1,000円超と不安定。アナリスト目標株価1,530円（急騰前の古い数値）でファンダとの乖離が大きく完全テーマ先行。天井目安：①4,890円（直近高値）②5,000円（心理的節目）③5,500〜6,000円（過熱限界）。モメンタム乗りは現水準からは過熱感強く新規は見送り推奨。急落時のルール設定必須。</div>
+</details>
+
+<details id="info-6962">
+<summary><span class="badge badge-crystal" style="margin-right:6px">水晶デバイス</span>6962 大真空</summary>
+<div class="memo-body">【2026-06-07】水晶デバイステーマ調査。水晶振動子商品シェア世界首位級。売上の9割が海外。時価総額362億円の小型株。エッジAI向け差動出力発振器に強み。6/5に東証プライム値上がり率1位・年初来高値1,132円更新（+14.77%）。年初来安値571円から約+98%の上昇。PBR0.91倍・配当利回り3.44%と割安感あり。一方でPER258倍・アナリスト目標株価670円（現在値の約6割）とファンダ乖離大。シグナルは「売り継続・高値圏警戒」。天井目安：①1,132円（直近年初来高値）②1,200〜1,300円（心理的節目）③1,500円（年初来安値からの2.6倍水準・過熱限界）。日本電波工業より上昇率が低く押し目あれば検討余地あり。高値から10〜15%下落で撤退ルール設定推奨。</div>
+</details>
+
+</div>
+
+<h2>Tips：経済イベント×市場反応パターン</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>#</th><th>トリガー</th><th>売られるもの</th><th>代表（売）</th><th>買われるもの</th><th>代表（買）</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="center">1</td><td>中東地政学リスク勃発</td><td>輸出株・航空株</td><td class="code">ANA（9202）</td><td>防衛・原油・金・内需・海運</td><td class="code">三菱重工（7011）</td></tr>
+<tr><td class="center">2</td><td>米雇用統計が強い</td><td>グロース・債券・新興国・金</td><td class="code">メルカリ（4385）</td><td>銀行・ドル・短期債・シクリカル</td><td class="code">三菱UFJ（8306）</td></tr>
+<tr><td class="center">3</td><td>米CPI高止まり</td><td>長期債・REIT・ハイテク</td><td class="code">日本ビルファンド（8951）</td><td>銀行・エネルギー・金・コモディティ</td><td class="code">INPEX（1605）</td></tr>
+<tr><td class="center">4</td><td>日銀利上げ示唆</td><td>不動産・ハイテク・輸出株</td><td class="code">トヨタ（7203）</td><td>銀行・保険・円</td><td class="code">東京海上HD（8766）</td></tr>
+<tr><td class="center">5</td><td>円安進行（日米金利差拡大）</td><td>内需・小売・輸入業者</td><td class="code">ニトリHD（9843）</td><td>輸出株・インバウンド・商社</td><td class="code">トヨタ（7203）</td></tr>
+<tr><td class="center">6</td><td>円高急進（有事・リスクオフ）</td><td>輸出株・製造業</td><td class="code">トヨタ（7203）</td><td>内需・エンタメ・食品・医薬品</td><td class="code">東宝（9602）</td></tr>
+<tr><td class="center">7</td><td>中国景気悪化</td><td>素材・鉄鋼・工作機械・化学</td><td class="code">神戸製鋼（5406）</td><td>内需・ゲーム・医薬品</td><td class="code">任天堂（7974）</td></tr>
+<tr><td class="center">8</td><td>米中対立激化・関税強化</td><td>半導体・精密機器・海運</td><td class="code">東京エレク（8035）</td><td>防衛・国産半導体・内需</td><td class="code">三菱重工（7011）</td></tr>
+<tr><td class="center">9</td><td>原油価格急騰</td><td>航空・化学・輸送</td><td class="code">ANA（9202）</td><td>エネルギー・商社・海運</td><td class="code">INPEX（1605）</td></tr>
+<tr><td class="center">10</td><td>原油価格急落</td><td>エネルギー・商社</td><td class="code">INPEX（1605）</td><td>航空・化学・輸送・小売</td><td class="code">ANA（9202）</td></tr>
+<tr><td class="center">11</td><td>VIX急上昇（パニック相場）</td><td>全体売り・新興国・ハイテク</td><td class="code">ソフトバンクG（9984）</td><td>金・円・国債・ディフェンシブ</td><td class="code">住友金属鉱山（5713）</td></tr>
+<tr><td class="center">12</td><td>米国景気後退懸念</td><td>シクリカル・銀行・ハイテク</td><td class="code">三菱UFJ（8306）</td><td>公益・医薬品・食品・金</td><td class="code">武田薬品（4502）</td></tr>
+<tr><td class="center">13</td><td>AI・半導体ブーム加速</td><td>旧来型製造・百貨店</td><td class="code">高島屋（8233）</td><td>半導体・電力インフラ・データセンター</td><td class="code">東京エレク（8035）</td></tr>
+<tr><td class="center">14</td><td>サイバー攻撃・大規模インシデント</td><td>被害企業・金融システム株</td><td class="code">三菱UFJ（8306）</td><td>セキュリティ・クラウド・通信インフラ</td><td class="code">FFRIセキュリティ（3692）</td></tr>
+<tr><td class="center">15</td><td>自然災害・国内大規模災害</td><td>観光・航空・小売</td><td class="code">ANA（9202）</td><td>建設・重機・通信・ライフライン</td><td class="code">大林組（1802）</td></tr>
+<tr><td class="center">16</td><td>選挙・政権交代（自民圧勝）</td><td>規制産業・再エネ</td><td class="code">レノバ（9519）</td><td>防衛・原発・公共事業・銀行</td><td class="code">三菱重工（7011）</td></tr>
+<tr><td class="center">17</td><td>選挙・政権交代（野党勝利）</td><td>原発・防衛・銀行</td><td class="code">三菱重工（7011）</td><td>再エネ・EV・社会保障関連</td><td class="code">レノバ（9519）</td></tr>
+<tr><td class="center">18</td><td>円キャリートレード巻き戻し</td><td>輸出株・全体急落</td><td class="code">トヨタ（7203）</td><td>円・国債・内需ディフェンシブ</td><td class="code">ニトリHD（9843）</td></tr>
+<tr><td class="center">19</td><td>食料・穀物価格急騰</td><td>食品加工・外食</td><td class="code">日清食品HD（2897）</td><td>農業機械・肥料・商社（穀物）</td><td class="code">クボタ（6326）</td></tr>
+<tr><td class="center">20</td><td>金利低下転換（利下げ開始）</td><td>銀行・保険・短期債</td><td class="code">東京海上HD（8766）</td><td>REIT・ハイテク・グロース・新興国</td><td class="code">日本ビルファンド（8951）</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="legend">
+<h2>凡例</h2>
+<table>
+<thead><tr><th>記号</th><th>意味</th></tr></thead>
+<tbody>
+<tr><td><code>YH</code></td><td>年初来高値</td></tr>
+<tr><td><code>YL</code></td><td>年初来安値</td></tr>
+<tr><td><code>AH</code></td><td>上場来高値</td></tr>
+<tr><td><code>AL</code></td><td>上場来安値</td></tr>
+<tr><td><code>MA↑(N日)</code></td><td>N日移動平均線 反発</td></tr>
+<tr><td><code>MA↓(N日)</code></td><td>N日移動平均線 下抜け</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>更新履歴</h2>
+<div class="table-wrap">
+<table class="update-table">
+<thead><tr><th>更新日</th><th>更新内容</th></tr></thead>
+<tbody>
+<tr><td>2026-06-06</td><td>ファイル新規作成</td></tr>
+<tr><td>2026-06-07</td><td>富士電機・キッツ・三菱重工を追記（DC液冷テーマ調査）</td></tr>
+<tr><td>2026-06-07</td><td>三桜工業・パナソニックHDを追記（保有銘柄・DC液冷テーマ調査）</td></tr>
+<tr><td>2026-06-07</td><td>日立製作所・横河電機・岡野バルブ・木村化工機を追記（SMR・原発テーマ調査）</td></tr>
+<tr><td>2026-06-07</td><td>日本電波工業・大真空を追記（水晶デバイス・AIサーバーテーマ調査、天井目安含む）</td></tr>
+<tr><td>2026-06-07</td><td>HTMLファイルに変換。表＋ドロップダウンメモ＋アンカーリンク形式に変更</td></tr>
+<tr><td>2026-06-07</td><td>Tips欄を追加（経済イベント×市場反応パターン20種、売買代表銘柄付き）</td></tr>
+</tbody>
+</table>
+</div>
+
+<footer>このファイルはプロジェクト｛株｝の収集情報として管理してください。</footer>
+
+<script>
+function openDetail(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.open = true;
+    setTimeout(function() {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+</script>
+
+</body>
+</html>
